@@ -1,0 +1,254 @@
+@charset "UTF-8";
+
+*{
+	list-style: none;  /* 점 없애기 */
+	text-decoration: none;  /* a태그 밑줄 색변경 x */
+	border-collapse: collapse; /* teble 줄 한줄로 */
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+a{
+	cursor: pointer;
+}
+
+.outer_div{
+	margin:auto;
+	/* border:1px #333D79 solid; */
+	width: 1100px;
+	height: 1200px;
+}
+
+.logo_img {
+	width: 347px;
+	height: 112px;
+	margin-left: 376px;
+	margin-bottom: 10px;
+	
+}
+
+.logo_img2{
+	width: 347px;
+	height: 112px;
+}
+
+.header{
+	background-color: #333D79;
+	width:100%;
+	padding-left: 400px;
+	padding-right: 400px;
+	margin-left: -400px;
+}
+
+.header > ul > li {
+	font-size: 30px;
+	display: inline;
+	color: white;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.bt > li{
+	margin-left: 110px;
+}
+
+.webtoon{
+	margin-top:20px;
+	margin-left:20px;
+	width: 800px;
+	height: 500px;
+	/* background-color: red; */
+	/* border:1px red solid; */
+	position: absolute;
+}
+
+.wtimg_box{
+	width:160px;
+	height: 200px;
+	margin: 25px 20px;
+	/* border:1px blue solid; */
+	float: left;
+}
+
+.wt_img{
+	width: 160px;
+	height: 123px;
+	cursor:pointer;
+}
+
+.wtimg_box > ul > li{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 13px;
+}
+/* --------------------------------------------------------------- */
+
+.login {
+	width: 240px;
+	height: 150px;
+	/* background-color: blue; */
+	border:1px black double;
+	float:right;
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-bottom: 0%;
+}
+
+input{ 
+	width: 150px;
+	height: 22px;
+	margin:	8px 0px 3px 8px;
+}
+
+#id {
+	margin-top: 20px;
+}
+
+.login_bt{
+	width: 67px;
+	height: 64px;
+	position: absolute;
+	margin-top: -30px;
+	margin-left: 5px;
+	background-color: #333D79;
+	color: white;
+	cursor:pointer;
+}
+
+#a0{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 11px;
+	margin-left: 117px;
+}
+
+#a2{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 11px;
+	margin-left: 6px;
+}
+
+.login_good{
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 40px 0px 0px 30px;
+	color: #333D79;
+}
+
+#good_a0{
+	font-size: 13px;
+	color: black;
+	margin-left: 90px;
+}
+
+#good_a1{
+	position:absolute;
+	font-size: 13px;
+	color: black;
+	margin-left: 80px;
+}
+
+.good_bt{
+	background-color:#333D79;
+	color: white;
+	width: 65px;
+	height: 22px;
+	margin-left: 160px;
+	margin-top: 50px;
+	cursor:pointer;
+}
+/* --------------------------------------------------------------- */
+
+.rank {
+	width: 240px;
+	height: 330px;
+	/* background-color: orange; */
+	border:1px #C7D3D4 solid;
+	margin-top: 190px;
+	margin-left: 840px;
+}
+
+.rank_name{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 20px;
+	color: white;
+	background-color: #c72d1b;
+}
+
+.rank table{
+	margin-top: 3px;
+}
+
+.rank th{
+	color: #c72d1b;
+}
+
+.rank td{
+	margin: 10px;
+	font-size: 13px;
+}
+
+.rank1{
+	cursor:pointer;
+}
+/* --------------------------------------------------------------- */
+.community{
+	width: 800px;
+	height: 500px;
+	/* background-color: purple; */
+	/* border:1px purple solid; */
+	position: absolute;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.community tr{
+	align:center;
+	border-left: white;
+	border-right: white;
+}
+
+.community th{
+	font-weight: 600;
+	font-size: 13px;
+	color: black;
+	align:center;
+}
+
+.community td{
+	font-weight: 400;
+	font-size: 13px;
+	color: black;
+	align:center;
+}
+
+.commu_name{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 20px;
+	color: white;
+	background-color: #333D79;
+	padding: 3px 3px 0px 3px;
+	border-radius:3px 3px 0px 0px;
+	margin-left: 20px;
+	
+}
+
+.commu_header{
+	width: 800px;
+	height: 2px;
+	background-color: #333D79;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

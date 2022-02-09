@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- VisitDAO vist_dapBean = new VisitDAO(); 
+		 daoBean.setSqlSession(sqlSessionBean);-->
+		 
+		 <bean id="user_daobean" class="dao.UserDAO">
+		 	<property name="sqlSession" ref="sqlSessionBean"></property>
+		 </bean>
+		
+		<bean id="project_daoBean" class="dao.ProjectDAO">
+			<property name="sqlSession" ref="sqlSessionBean"/>
+		</bean>
+		
+		<bean id="board_daoBean" class="dao.BoardDAO">
+			<constructor-arg name="sqlSession" ref="sqlSessionBean"/>
+		</bean>
+		
+		<context:component-scan base-package="pageUtil"/>
+		
+</beans>

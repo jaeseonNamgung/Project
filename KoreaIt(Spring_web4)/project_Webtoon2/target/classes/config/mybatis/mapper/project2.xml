@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p2">
+	
+	<!-- 기본 -->
+	<!-- 만화 전체 조회 -->
+	<select id="project_list1" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon 
+		order by idx DESC
+	</select>
+	
+	<!-- 								조건검색													 -->
+	<select id="project_list_title1" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon 
+		where title LIKE #{title}||'%'
+		order by idx DESC
+	</select>
+	
+	<select id="project_list_author1" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon 
+		where author LIKE #{author}||'%'
+		order by idx DESC
+	</select>
+	
+	<select id="project_list_genre1" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon 
+		where genre=#{genre}
+		order by idx DESC
+	</select>
+	
+	<select id="project_list_title_author1" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and author LIKE #{author}||'%' 
+		order by idx DESC
+	</select>
+	
+	<select id="project_list_title_genre1" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and genre=#{genre} 
+		order by idx DESC
+	</select>
+	
+	<select id="project_list_author_genre1" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where author LIKE #{author}||'%' and genre=#{genre} 
+		order by idx DESC
+	</select>
+	
+	<select id="project_list_all1" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and author LIKE #{author}||'%' and genre=#{genre} 
+		order by idx DESC
+	</select>
+	
+	
+	
+	
+	<!-- rec -->
+	<!-- 추천순 만화 전체 조회 -->
+	<select id="project_list2" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		order by rec DESC, idx DESC
+	</select>
+	
+	<!-- 								조건검색													 -->
+	<select id="project_list_title2" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%'
+		order by rec DESC, idx DESC
+	</select>
+	
+	<select id="project_list_author2" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where author LIKE #{author}||'%'
+		order by rec DESC, idx DESC
+	</select>
+	
+	<select id="project_list_genre2" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where genre=#{genre}
+		order by rec DESC, idx DESC
+	</select>
+	
+	<select id="project_list_title_author2" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and author LIKE #{author}||'%' 
+		order by rec DESC, idx DESC
+	</select>
+	
+	<select id="project_list_title_genre2" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and genre=#{genre} 
+		order by rec DESC, idx DESC
+	</select>
+	
+	<select id="project_list_author_genre2" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where author LIKE #{author}||'%' and genre=#{genre} 
+		order by rec DESC, idx DESC
+	</select>
+	
+	<select id="project_list_all2" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and author LIKE #{author}||'%' and genre=#{genre} 
+		order by rec DESC, idx DESC
+	</select>
+	
+
+
+	
+	<!-- views -->
+	<!-- 만화 전체 조회 -->
+	<select id="project_list3" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		order by views DESC, idx DESC
+	</select>
+	
+	<!-- 								조건검색													 -->
+	<select id="project_list_title3" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%'
+		order by views DESC, idx DESC
+	</select>
+	
+	<select id="project_list_author3" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where author LIKE #{author}||'%'
+		order by views DESC, idx DESC
+	</select>
+	
+	<select id="project_list_genre3" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where genre=#{genre} 
+		order by views DESC, idx DESC
+	</select>
+	
+	<select id="project_list_title_author3" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and author LIKE #{author}||'%'
+		order by views DESC, idx DESC
+	</select>
+	
+	<select id="project_list_title_genre3" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and genre=#{genre} 
+		order by views DESC, idx DESC
+	</select>
+	
+	<select id="project_list_author_genre3" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where author LIKE #{author}||'%' and genre=#{genre} 
+		order by views DESC, idx DESC
+	</select>
+	
+	<select id="project_list_all3" resultType="vo.ToonVO" parameterType="vo.ToonVO">
+		select * from toon
+		where title LIKE #{title}||'%' and author LIKE #{author}||'%' and genre=#{genre} 
+		order by views DESC, idx DESC
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

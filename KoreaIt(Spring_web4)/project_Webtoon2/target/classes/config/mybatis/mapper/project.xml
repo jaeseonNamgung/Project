@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p">
+	
+	<!-- 만화 추가 -->
+	<insert id="project_insert" parameterType="vo.ToonVO">
+		insert into TOON values(
+			seq_toon_idx.nextVal,
+			#{title},
+			#{author},
+			0,
+			0,
+			#{genre},
+			#{filename},
+			#{website}
+			)
+	</insert>
+	
+	<!-- toon DB에서 마지막 idx -->
+	<select id="toon_max" resultType="int">
+		select max(idx) from toon
+	</select>
+	
+	<!-- 만화 랜덤으로 가져오기 -->
+	<select id="random" resultType="vo.ToonVO" parameterType="int">
+		select * from toon where idx=#{rnd}
+	</select>
+	
+	<!-- 만화 idx들 가져오기 -->
+	<select id="idxs" resultType="int">
+		select idx from toon
+	</select>
+	
+	<!-- 북마크 추가 -->
+	<insert id="bookmark_insert" parameterType="vo.BookmarkVO">
+	 	insert into BOOKMARK values (
+	 								 seq_bookmark_idx.nextVal,
+	 								 #{user2_id},
+	 								 #{toon_idx}
+	 								 )
+	</insert>
+	
+	<!-- 이미지 클릭 시 만화 가져오기 -->
+	<select id="toon_click" resultType="vo.ToonVO" parameterType="int">
+		select * from toon where idx=#{idx}
+	</select>
+	
+	<!-- 추천수 +1 -->
+	<update id="rec_plus" parameterType="int">
+	 	update toon set rec = rec + 1
+	 	where idx=#{idx}
+	</update>
+	
+	<!-- 추천수 -1 -->
+	<update id="rec_minus" parameterType="int">
+	 	update toon set rec = rec - 1
+	 	where idx=#{idx}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="views" parameterType="int">
+	 	update toon set views = views + 1
+	 	where idx=#{idx}
+	</update>
+	
+	<!-- user2_id로 북마크 toon_idx가져오기 -->
+	<select id="bookmark_toon_idx" resultType="int" parameterType="String">
+		select toon_idx from bookmark
+		where user2_id=#{user2_id}
+	</select>
+	
+	<!-- bookmark에서 삭제 -->
+	<delete id="bookmark_delete" parameterType="vo.BookmarkVO">
+		delete from bookmark
+		where user2_id=#{user2_id} and toon_idx=#{toon_idx}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

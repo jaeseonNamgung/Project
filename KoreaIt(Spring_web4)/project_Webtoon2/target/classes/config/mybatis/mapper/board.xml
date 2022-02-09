@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="b">
+	<select id="boardList" resultType="board" parameterType="java.util.HashMap">
+		SELECT * FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY pin ASC, idx DESC) R, B.* FROM 
+				(SELECT * FROM BOARD) B)
+		WHERE R BETWEEN #{startList} AND #{endList}
+	</select>
+	
+	<select id="detailedMenu" resultType="board" parameterType="java.util.HashMap">
+		
+		SELECT * FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY pin ASC, idx DESC) R, B.* FROM 
+				(SELECT * FROM BOARD WHERE menu = #{menu}) B)
+		WHERE R BETWEEN TO_NUMBER(#{startList}) AND TO_NUMBER(#{endList})
+	
+	</select>
+	<!-- menu 전체 페이지 수 조회 -->
+	<select id="totalMenuPage" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM BOARD WHERE menu = #{menu}
+	</select>
+
+	<select id="detailedName" resultType="board" parameterType="java.util.HashMap">
+		SELECT * FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY pin ASC, idx DESC) R, B.* FROM 
+				(SELECT * FROM BOARD WHERE name = #{name}) B)
+		WHERE R BETWEEN TO_NUMBER(#{startList}) AND TO_NUMBER(#{endList})
+	</select>
+		<!-- name 전체 페이지 수 조회 -->
+	<select id="totalNamePage" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE name = #{name}
+	</select>
+	
+	<!-- 상세검색 -->
+	<select id="advancedSearch" parameterType="java.util.HashMap" resultType="board">
+		SELECT * FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY pin ASC, idx DESC) R, B.* FROM 
+				(SELECT * FROM BOARD WHERE LOWER(${choice}) LIKE LOWER('%'||#{search}||'%')) B)
+		WHERE R BETWEEN TO_NUMBER(#{startList}) AND TO_NUMBER(#{endList})
+	</select>
+	
+	<!-- 상세검색 전체 페이지 수 조회 -->
+	<select id="totalAdvancedSearchPage"  parameterType="java.util.HashMap" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE LOWER(${choice}) LIKE LOWER('%'||#{search}||'%')
+	</select>
+	
+	<select id="totalPage" resultType="_int">
+		SELECT COUNT(*) FROM BOARD
+	</select>
+
+	
+	
+	<insert id="boardWrite" parameterType="board">
+		INSERT INTO BOARD VALUES(
+			seq_idx.NEXTVAL,<!-- 글 인덱스 -->
+			#{name}, <!-- 이름 -->
+			#{subject}, <!-- 제목 -->
+			#{content}, <!-- 내용 -->
+			#{menu}, <!-- 게시판 -->
+			#{pwd}, <!-- 비밀번호 -->
+			SYSDATE, <!-- 날짜 -->
+			0, <!-- 조회수 -->
+			0, <!-- 추천수 -->
+			seq_idx.CURRVAL, <!-- ref -->
+			0, <!-- step -->
+			0, <!-- del -->
+			0, <!-- pin -->
+			#{files}, <!-- 파일이름 -->
+			0, <!-- 댓글 수 -->
+			#{userId}		
+		)
+	</insert>
+	
+	<insert id="notice" parameterType="board">
+		INSERT INTO BOARD VALUES(
+			seq_idx.NEXTVAL,<!-- 글 인덱스 -->
+			#{name}, <!-- 이름 -->
+			#{subject}, <!-- 제목 -->
+			#{content}, <!-- 내용 -->
+			#{menu}, <!-- 게시판 -->
+			#{pwd}, <!-- 비밀번호 -->
+			SYSDATE, <!-- 날짜 -->
+			0, <!-- 조회수 -->
+			0, <!-- 추천수 -->
+			seq_idx.CURRVAL, <!-- ref -->
+			0, <!-- step -->
+			0, <!-- del -->
+			-1, <!-- pin -->
+			#{files}, <!-- 파일이름 -->
+			0, <!-- 댓글 수 -->
+			#{userId}		
+		)
+	</insert>
+
+	
+	<!-- 특정 회원 정보  -->
+	<select id="boardDetail" resultType="board" parameterType="_int">
+		SELECT * FROM BOARD WHERE idx = #{idx}
+	</select>
+	
+	<update id="boardCommentCount" parameterType="_int">
+		UPDATE BOARD SET comments = comments + 1 WHERE idx = #{idx}
+	</update>
+	
+	<insert id="boardDetailStyleAction" parameterType="comment">
+		INSERT INTO "COMMENT" VALUES(
+			SEQ_IDX_COMMENT.NEXTVAL,
+			#{userId},
+			#{nickName},
+			#{content},
+			#{del},
+			SYSDATE,
+			#{ref}		
+		)
+	</insert>
+	
+	<select id="commentSelect" resultType="comment" parameterType="_int">
+		SELECT * FROM "COMMENT" WHERE ref = #{ref} ORDER BY idx DESC
+	</select>
+	
+	<update id="boardReadHit" parameterType="board">
+		UPDATE BOARD SET readHit = readHit+1 WHERE idx = #{idx} 
+	</update>
+	
+	<!-- NVL :  NVL안에 MAX 함수를 사용하면 값이 없을 경우 -1으로 반환  -->
+	<select id="boardHeart" parameterType="heart" resultType="_int">
+		<![CDATA[
+		SELECT NVL(MAX(boardNumber),-1) FROM HEART WHERE userId = #{userId} AND idx = #{idx}
+		]]>
+	</select>
+	
+	<insert id="heartInsert" parameterType="heart">
+		INSERT INTO HEART VALUES(
+			#{idx},
+			1,
+			#{userId}
+			)
+	</insert>
+	
+		
+	<update id="heartNumberModify" parameterType="heart">	
+		UPDATE HEART SET boardNumber = #{boardNumber} WHERE idx = #{idx} AND userId = #{userId}
+	</update>
+	
+	<update id="boardRecommendCount" parameterType="board">
+		UPDATE BOARD SET recommend = #{recommend} WHERE idx = #{idx}
+	</update>
+	
+	<select id="boardCommentDel" parameterType="comment" resultType="comment">
+		SELECT * FROM "COMMENT" WHERE idx = #{idx} AND userId = #{userId} 
+	</select>
+	
+	<update id="boardCommentUpdate" parameterType="comment">
+		UPDATE "COMMENT" SET content = #{content}, regDate = SYSDATE, del= #{del} WHERE idx = #{idx}
+	</update>
+	<update id = "boardModify" parameterType="board">
+		UPDATE BOARD SET 
+			name = #{name},
+			subject = #{subject},
+			content = #{content},
+			menu = #{menu},
+			pwd = #{pwd},
+			regDate = SYSDATE,
+			files = #{files}
+			WHERE idx = #{idx}
+	</update>
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM BOARD WHERE idx = #{idx}
+	</delete>
+	<!-- <![CDATA[]]> : 등호 연산을 하기 위한 설정 -->
+	<update id="sequenceModify" parameterType="_int">
+		ALTER SEQUENCE seq_idx INCREMENT BY #{idx}
+	</update>
+	
+</mapper>

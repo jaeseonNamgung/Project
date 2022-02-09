@@ -1,0 +1,150 @@
+ @charset "UTF-8";
+*{ 
+margin:0 auto; 
+padding:0;
+}
+body {
+	  overflow-x: hidden; 
+   /* background-color: rgba(112, 197, 231, 0.452); */
+   /* background-image: url(/us/resources/img/Background.png); */
+}
+
+/* .header {
+	width: 100%;
+	height: 100px;
+} */
+
+.header p {
+	color: ivory;
+	text-align: center;
+	line-height: 100px;
+	font-family: cursive;
+	font-size: 70px;;
+	word-spacing: 20px;
+	letter-spacing: 5px;
+	margin: 45px;
+}
+.container {
+	width: 1200px;
+   height: 680px;
+   border-style: solid;
+   border-color: #333D79;
+   border-radius: 55px;
+   border-width: 0.5em;
+   margin: 30px auto;
+   position: relative;
+   background-color: rgb(255, 255, 255);
+	
+}
+
+.signUp_left {
+	width: 600px;
+	height: 750px;
+	float: left;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-top-left-radius: 55px;
+	border-bottom-left-radius: 55px;
+}
+
+.border {
+	height: 400px;
+/*    margin-top: 10px; */
+   border-right: 3px solid rgba(128, 128, 128, 0.301);
+   width:center;
+}
+.image{
+	margin-top:170px;
+}
+
+.signUp_right {
+	width: 600px;
+	height: 750px;
+	float: right;
+	/* position: relative; */
+}
+
+.name_text, .id_text, .pwd_text, .phoneno_text, .email_text, .nick_text
+	{
+	width: 250px;
+   padding: 14px;
+   margin-bottom: 30px;
+   border: none;   
+   border-bottom: 1px solid #333D79; /* rgba(122, 199, 230, 0.548) */
+   border-width: 3px;
+   background-color: rgba(235, 235, 188, 0);
+   font-size:15px
+}
+
+.name_text, .id_text, .pwd_text, .phoneno_text, .email_text, .nick_text:focus{
+	outline: none;
+}
+
+li {
+	list-style: none;
+}
+
+.main {
+	position: absolute;
+	top: 100px;
+	left: 730px;
+	width: 100%;
+	height: 550px;
+}
+
+.id_check {
+	position: absolute;
+	left: 200px;
+	top: 120px;	
+	cursor: pointer;
+	font-size:15px;
+	padding:3px;
+	border-radius: 10px;
+	background:white;
+}
+
+.nickname_check {
+	position: absolute;
+	left: 200px;
+	bottom: 165px;
+	cursor: pointer;
+	font-size:15px;
+	padding:3px;
+	border-radius: 10px;
+	background:white;
+}
+
+.email_check {
+	position: absolute;
+	left: 200px;
+	bottom: 245px;
+	cursor: pointer;
+	font-size:15px;
+	padding:3px;
+	border-radius: 10px;
+	background:white;
+}
+
+.main p {
+	font-size:70px;
+	color: black;
+	letter-spacing: 1px;
+	font: italic 1.2em "Fira Sans", serif;
+	margin-bottom: 30px;
+	margin-top:-30px;
+	text-align:center;
+	display: flex;
+	/* justify-content: start; */
+}
+
+.btn_signUp {
+	 background-color: #1F50B5; /* #8EA8DB; */
+   padding: 15px 0;
+   color: white;
+   border: none;
+   border-radius: 120px;
+   cursor: pointer;
+   font-weight: bold;
+   font-size: 18px;
+}
