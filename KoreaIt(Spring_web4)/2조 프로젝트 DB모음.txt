@@ -1,0 +1,89 @@
+2조 프로젝트 DB모음
+
+
+-----------------------------------------------------------------------로그인 유저DB▼
+시퀀스
+create sequence seq_user2_idx;
+
+create table user2(
+	idx NUMBER(5), --일련번호
+	name VARCHAR2(50), --이름
+	id VARCHAR2(50),--아이디
+	pwd VARCHAR2(50), --비번
+	email VARCHAR2(50), --이메일
+	nickname VARCHAR2(50) --닉네임
+);
+
+-----------------------------------------------------------------------웹툰DB▼
+
+시퀀스
+create sequence seq_toon_idx;
+
+create table toon(
+	idx NUMBER(5),--북마크에 저장을 하기 위해 파라미터로 넘기기위한 용도
+	TITLE VARCHAR2(50),--제목
+	AUTHOR VARCHAR2(50),--작가명
+	REC NUMBER(5),--추천수
+	VIEWS NUMBER(5),--조화수
+	GENRE VARCHAR2(30),--장르
+	FILENAME VARCHAR2(200),--이미지
+	WEBSITE VARCHAR2(50)--만화를 볼 수 있는 해당 사이트
+);
+
+-----------------------------------------------------------------------웹툰 북마크DB▼
+
+시퀀스
+ create sequence seq_bookmark_idx;
+
+create table bookmark(
+	idx NUMBER(5),--번호
+	user2_id VARCHAR2(50),--유저아이디(?)
+	TOON_IDX NUMBER(5)--웹툰번호로 추정
+);
+CREATE SEQUENCE seq_idx_board; -- 게시판 시퀀스
+
+-----------------------------------------------------------------------게시판DB ▼
+
+게시판 시퀀스
+CREATE SEQUENCE seq_idx;
+
+CREATE TABLE BOARD(
+	idx NUMBER NOT NULL PRIMARY KEY, -- 댓글 index
+	name VARCHAR2(100) NOT NULL, -- 이름
+	subject VARCHAR2(100) NOT NULL, -- 제목
+	content CLOB NOT NULL, -- 내용
+	menu VARCHAR2(100) NOT NULL, -- 게시판 메뉴(종류)
+	pwd VARCHAR2(100) NOT NULL, -- 비밀번호
+	regDate DATE NOT NULL, -- 업로드 날짜
+	readHit NUMBER NOT NULL, -- 조회수
+	recommend NUMBER NOT NULL, -- 추천수
+	REF NUMBER NOT NULL, -- ref
+	step NUMBER NOT NULL, -- step
+	del NUMBER NOT NULL, -- 삭제 판단
+	pin NUMBER NOT NULL, -- 공지사항 판단
+	files VARCHAR2(100), -- 파일 이름
+	comments NUMBER DEFAULT 0, -- 댓글 수 
+	userId varchar2(100) UNIQUE -- id 
+);
+
+-----------------------------------------------------------------------게시판 댓글DB▼
+
+시퀀스
+CREATE SEQUENCE SEQ_IDX_COMMENT;
+
+CREATE TABLE "COMMENT"(
+	idx NUMBER NOT NULL, 
+	userId VARCHAR2(100) NOT NULL,
+	nickName VARCHAR2(100) NOT NULL,
+	content CLOB NOT NULL,
+	del NUMBER NOT NULL,
+	regDate DATE NOT NULL,
+	REF NUMBER NOT NULL
+);
+
+-----------------------------------------------------------------------게시판 좋아요DB▼
+CREATE TABLE heart(
+	idx NUMBER REFERENCES BOARD(idx), -- 좋아요 번호
+	boardNumber NUMBER, -- 좋아요 한 인덱스,
+	userId VARCHAR2(100) -- 사용자 아이디
+);
